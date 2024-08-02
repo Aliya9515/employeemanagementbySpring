@@ -1,6 +1,14 @@
 package com.jsp.empoye_management.entity;
+
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import lombok.Data;
+
+@Entity
+@Data
 public class Experience {
-	int id;
+	@Id
+	int ExperinceId;
 	String companyName;
 	String yearOfExp;
 	String monthOfExp;
