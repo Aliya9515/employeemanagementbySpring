@@ -7,10 +7,10 @@ import lombok.Data;
 @Data
 public class EducationalDetails {
 	@Id
-	int educatinalId;
-	String degree;
-	String stream;
-	String yop;
-	String percentage;
-	String univercityName;
+	private int educatinalId;
+	private String degree;
+	private String stream;
+	private String yop;
+	private String percentage;
+	private String univercityName;
 	}

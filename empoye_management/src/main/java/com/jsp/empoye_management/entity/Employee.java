@@ -18,21 +18,21 @@ import lombok.Data;
 public class Employee {
 	@Id 
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-int empId;
-String fName;
-String lName;
-int age;
-String gender;
-String phone;
-@Column(unique=true)
-String email;
-String pwd;
-String dob;
+ private int empId;
+ private String firstName;
+ private String lastName;
+ private int age;
+ private String gender;
+ private String phone;
+//@Column(unique=true)
+ private String email;
+ private String pwd;
+ private String dob;
 @Lob
 @Column(columnDefinition = "LONGBLOB",length= Integer.MAX_VALUE)
-byte[]image;
+ private byte[]image;
 @OneToMany(cascade=CascadeType.ALL)
-List<Experience> experience;
+ private List<Experience> experience;
 @OneToMany(cascade=CascadeType.ALL)
-List<EducationalDetails> eduDetails;
+ private List<EducationalDetails> eduDetails;
 }

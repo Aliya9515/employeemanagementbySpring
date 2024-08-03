@@ -8,9 +8,9 @@ import lombok.Data;
 @Data
 public class Experience {
 	@Id
-	int ExperinceId;
-	String companyName;
-	String yearOfExp;
-	String monthOfExp;
-	String designation;
+	private int ExperinceId;
+	private String companyName;
+	private String yearOfExp;
+	private String monthOfExp;
+	private String designation;
 }
