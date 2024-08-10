@@ -1,9 +1,6 @@
 package com.jsp.empoye_management.entity;
 import java.util.List;
 
-import org.springframework.stereotype.Component;
-import org.springframework.stereotype.Controller;
-
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -23,7 +20,7 @@ public class Employee {
  private String lastName;
  private int age;
  private String gender;
- private String phone;
+ private long phone;
 //@Column(unique=true)
  private String email;
  private String pwd;

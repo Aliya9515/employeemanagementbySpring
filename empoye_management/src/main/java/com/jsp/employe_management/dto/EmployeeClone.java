@@ -1,6 +1,8 @@
-package com.jsp.empoye_management.clone;
+package com.jsp.employe_management.dto;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 @Data
+@NoArgsConstructor
 public class EmployeeClone {
 	 private int empId;
 	 private String firstName;
