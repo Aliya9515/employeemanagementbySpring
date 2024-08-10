@@ -1,6 +1,8 @@
 package com.jsp.empoye_management.service;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,7 +15,9 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 import com.jsp.employe_management.dto.EmployeeClone;
 import com.jsp.empoye_management.dao.EmployeeDao;
+import com.jsp.empoye_management.entity.EducationalDetails;
 import com.jsp.empoye_management.entity.Employee;
+import com.jsp.empoye_management.entity.Experience;
 import com.jsp.empoye_management.entity.LoginEmployee;
 import com.jsp.empoye_management.exception.IdNotFound;
 import com.jsp.empoye_management.util.ResponseStructure;
@@ -177,6 +181,42 @@ public class EmployeeService {
 			       }else
 			        throw new IdNotFound("id is not found exception");
 			 }
-
 	
+		
+		public ResponseEntity<ResponseStructure<Employee>> addEductionDetails(int id, EducationalDetails ed) throws MessagingException {
+			Employee emp = dao.findById(id);
+			if(emp.getEduDetails()==null) {
+				List<EducationalDetails> l = new ArrayList<EducationalDetails>();
+				l.add(ed);
+				emp.setEduDetails(l);
+			}else {
+				List<EducationalDetails> l = emp.getEduDetails();
+				l.add(ed);
+				emp.setEduDetails(l);
+			}
+			ResponseStructure<Employee> rs = new ResponseStructure<Employee>();
+			rs.setStateCode(HttpStatus.CREATED.value());
+			rs.setMessage("Education details saved Sucessfully..!");
+			rs.setData(mapper.map(dao.saveEmployee(emp), Employee.class));
+			return new ResponseEntity<ResponseStructure<Employee>>(rs, HttpStatus.CREATED);
+		}
+
+		public ResponseEntity<ResponseStructure<Employee>> saveExperienceDetails(int id, Experience ex) {
+			Employee emp = dao.findById(id);
+			if(emp.getEduDetails()==null) {
+				List<Experience> l = new ArrayList<Experience>();
+				l.add(ex);
+				emp.setExperience(l);
+			}else {
+				List<Experience> l = emp.getExperience();
+				l.add(ex);
+				emp.setExperience(l);
+			}
+			ResponseStructure<Employee> rs = new ResponseStructure<Employee>();
+			rs.setStateCode(HttpStatus.CREATED.value());
+			rs.setMessage("Experience details saved Sucessfully..!");
+			rs.setData(mapper.map(dao.saveEmployee(emp), Employee.class));
+			return new ResponseEntity<ResponseStructure<Employee>>(rs, HttpStatus.CREATED);
+		}
+
 }

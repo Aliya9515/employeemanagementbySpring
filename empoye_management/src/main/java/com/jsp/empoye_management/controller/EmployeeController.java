@@ -14,10 +14,14 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.jsp.employe_management.dto.EmployeeClone;
+import com.jsp.empoye_management.entity.EducationalDetails;
 import com.jsp.empoye_management.entity.Employee;
+import com.jsp.empoye_management.entity.Experience;
 import com.jsp.empoye_management.entity.LoginEmployee;
 import com.jsp.empoye_management.service.EmployeeService;
 import com.jsp.empoye_management.util.ResponseStructure;
+
+import jakarta.mail.MessagingException;
 @RestController
 public class EmployeeController {
 	@Autowired
@@ -82,4 +86,13 @@ public class EmployeeController {
 	 public ResponseEntity<byte[]> findById1(@RequestParam int id) {
 	  return service.fetchImage(id);
 	 }
+	 @PostMapping("/saveEducation")
+		public ResponseEntity<ResponseStructure<Employee>> saveEducationDetails (@RequestParam int id,@RequestBody EducationalDetails ed) throws MessagingException{
+			
+			return service.addEductionDetails(id, ed);
+		}
+		@PostMapping("/saveExperience")
+		public ResponseEntity<ResponseStructure<Employee>> saveExperienceDetails(@RequestParam int id ,@RequestBody Experience ex){
+			return service.saveExperienceDetails(id,ex);
+		}
 	}
